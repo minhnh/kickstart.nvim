@@ -173,6 +173,9 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Max line length
+vim.opt.textwidth = 120
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -1000,6 +1003,29 @@ require('lazy').setup({
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+
+  {
+    'zbirenbaum/copilot.lua',
+    requires = {
+      'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+    },
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup {
+        suggestion = {
+          enabled = true,
+          debounce = 150,
+          auto_trigger = true,
+          keymap = {
+            accept = '<c-Tab>',
+            accept_word = '<c-T>',
+            accept_line = '<c-L>',
+          },
+        },
+      }
+    end,
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
