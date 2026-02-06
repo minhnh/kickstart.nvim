@@ -11,6 +11,8 @@ return {
         cpp = { 'clangtidy' },
       }
 
+      vim.list_extend(lint.linters.markdownlint.args, { '--config', vim.fn.expand '~/.markdownlintrc' })
+
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
       -- lint.linters_by_ft = lint.linters_by_ft or {}

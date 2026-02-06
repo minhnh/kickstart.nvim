@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -784,7 +784,7 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
 
       snippets = { preset = 'luasnip' },
@@ -895,27 +895,44 @@ require('lazy').setup({
   },
 
   {
-    'zbirenbaum/copilot.lua',
-    requires = {
-      'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
-    },
-    cmd = 'Copilot',
-    event = 'InsertEnter',
-    config = function()
-      require('copilot').setup {
-        suggestion = {
-          enabled = true,
-          debounce = 150,
-          auto_trigger = true,
-          keymap = {
-            accept = '<c-Tab>',
-            accept_word = '<c-T>',
-            accept_line = '<c-L>',
-          },
-        },
-      }
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function(plugin)
+      if vim.fn.executable 'npx' then
+        vim.cmd('!cd ' .. plugin.dir .. ' && cd app && npx --yes yarn install')
+      else
+        vim.cmd [[Lazy load markdown-preview.nvim]]
+        vim.fn['mkdp#util#install']()
+      end
+    end,
+    init = function()
+      if vim.fn.executable 'npx' then vim.g.mkdp_filetypes = { 'markdown' } end
     end,
   },
+
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   requires = {
+  --     'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+  --   },
+  --   cmd = 'Copilot',
+  --   event = 'InsertEnter',
+  --   config = function()
+  --     require('copilot').setup {
+  --       suggestion = {
+  --         enabled = true,
+  --         debounce = 150,
+  --         auto_trigger = true,
+  --         keymap = {
+  --           accept = '<c-Tab>',
+  --           accept_word = '<c-T>',
+  --           accept_line = '<c-L>',
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

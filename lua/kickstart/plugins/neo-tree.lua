@@ -20,6 +20,13 @@ return {
           ['\\'] = 'close_window',
         },
       },
+      filtered_items = {
+        visible = false, -- hide filtered items on open
+        hide_gitignored = true,
+        hide_dotfiles = false,
+        hide_by_name = {},
+        never_show = { '.git' },
+      },
     },
   },
 }
