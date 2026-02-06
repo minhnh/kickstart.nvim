@@ -894,46 +894,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    ft = { 'markdown' },
-    build = function(plugin)
-      if vim.fn.executable 'npx' then
-        vim.cmd('!cd ' .. plugin.dir .. ' && cd app && npx --yes yarn install')
-      else
-        vim.cmd [[Lazy load markdown-preview.nvim]]
-        vim.fn['mkdp#util#install']()
-      end
-    end,
-    init = function()
-      if vim.fn.executable 'npx' then vim.g.mkdp_filetypes = { 'markdown' } end
-    end,
-  },
-
-  -- {
-  --   'zbirenbaum/copilot.lua',
-  --   requires = {
-  --     'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
-  --   },
-  --   cmd = 'Copilot',
-  --   event = 'InsertEnter',
-  --   config = function()
-  --     require('copilot').setup {
-  --       suggestion = {
-  --         enabled = true,
-  --         debounce = 150,
-  --         auto_trigger = true,
-  --         keymap = {
-  --           accept = '<c-Tab>',
-  --           accept_word = '<c-T>',
-  --           accept_line = '<c-L>',
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- },
-
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
@@ -954,7 +914,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
