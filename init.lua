@@ -150,6 +150,13 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- tabs
+vim.opt.smarttab = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
