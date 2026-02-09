@@ -1,0 +1,22 @@
+return {
+  --   'zbirenbaum/copilot.lua',
+  --   requires = {
+  --     'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+  --   },
+  --   cmd = 'Copilot',
+  --   event = 'InsertEnter',
+  --   config = function()
+  --     require('copilot').setup {
+  --       suggestion = {
+  --         enabled = true,
+  --         debounce = 150,
+  --         auto_trigger = true,
+  --         keymap = {
+  --           accept = '<c-Tab>',
+  --           accept_word = '<c-T>',
+  --           accept_line = '<c-L>',
+  --         },
+  --       },
+  --     }
+  --   end,
+}
